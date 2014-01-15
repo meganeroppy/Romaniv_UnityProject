@@ -3,37 +3,40 @@ using System.Collections;
 
 public class Attack_zone : MonoBehaviour {
 
-	public bool invisible = false;
-	public float delay = 2.5f;
-	public float duration = 1.0f;
+	public bool IS_INVISIBLE = false;
+	public const float DELAY = 0.15f;
+	public const float DURATION = 0.4f;
+	//public float duration = 5.0f;
 
 	private float t_time;
-	private bool attacking = false;
 	private bool hittable = false;
 
 	// Use this for initialization
 	void Start () {
-		if(invisible){
-		transform.renderer.enabled = false;
+		t_time = 0.0f;
+		if(IS_INVISIBLE){
+			transform.renderer.enabled = false;
 		}
 	}
+
 	// Update is called once per frame
 	void Update () {
+		t_time += 1.0f * Time.deltaTime;
 //		print (Time.realtimeSinceStartup - t_time);
 //		print("attacking = " + attacking.ToString());
 //		print("hittable = " + hittable.ToString());
+		Debug.Log("prepare to slap : " + t_time.ToString());
 
-		if(attacking && (Time.realtimeSinceStartup - t_time > delay)){
-			hittable = true;
-			attacking = false;
-			t_time = Time.realtimeSinceStartup;
-		}else if(hittable &&(Time.realtimeSinceStartup - t_time > duration))
-			Destroy(gameObject);
-	}
-
-	void execute(){
-		t_time = Time.realtimeSinceStartup;
-		attacking = true;
+		if(t_time >= DELAY && t_time < DELAY + DURATION){
+			Debug.Log("slapping : " + t_time.ToString());
+			this.renderer.material.color = new Color(0xFF,0x00,0x00);
+			if(!hittable){
+				hittable = true;
+			}
+		}else if(t_time >= DELAY + DURATION){
+			Debug.Log("End of slapping : " + t_time.ToString());
+			Destroy(this.gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){

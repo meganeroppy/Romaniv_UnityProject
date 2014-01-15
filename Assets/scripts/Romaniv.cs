@@ -64,7 +64,6 @@ public class Romaniv : MonoBehaviour {
 				GameObject atk = 
 				 Instantiate(attack_zone, (new Vector3(this.transform.position.x + (float)1.5, this.transform.position.y - (float)0.5, 0)), Quaternion.identity) as GameObject;;
 				atk.transform.parent = this.gameObject.transform;
-				atk.SendMessage("execute", SendMessageOptions.DontRequireReceiver);
 				cur_status = STATUS.RUN;
 				break;
 			case STATUS.DEAD:
