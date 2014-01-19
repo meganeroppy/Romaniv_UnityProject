@@ -7,7 +7,7 @@ public class Romaniv : MonoBehaviour {
 	private float t_time;
 
 	//status
-	public float speed = 10.0f;
+	public float speed = 8.0f;
 	public float jumpSpeed = 10.0f;
 //	public float re_attack_delay = 0.5f;
 //	private bool attackable = true;
@@ -25,8 +25,13 @@ public class Romaniv : MonoBehaviour {
 	public GameObject attack_zone;
 	public GameObject explosion;
 
+	private GameObject ground;
+	private CircleCollider2D collider;
+
 	// Use this for initialization
 	void Start () {
+		ground = GameObject.FindWithTag("ground");
+		collider = this.GetComponent<CircleCollider2D>();
 
 		cur_status = STATUS.RUN;
 		anim = GetComponent<Animator>();
@@ -34,6 +39,10 @@ public class Romaniv : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+		/////////////
+		/// 
 
 		switch(cur_status){
 			case STATUS.RUN:
@@ -52,6 +61,8 @@ public class Romaniv : MonoBehaviour {
 				transform.Translate(Vector2.up * cur_jumpSpeed * Time.deltaTime);
 				cur_jumpSpeed += Physics.gravity.y * Time.deltaTime;
 				if(cur_jumpSpeed <= 0.0f){
+		//	if(IsGrounded()){
+		//			print ("grounded!!");
 					cur_status = STATUS.RUN;
 	//				anim.SetTrigger("jump_end_t");
 				}
@@ -93,12 +104,13 @@ public class Romaniv : MonoBehaviour {
 		}
 	}
 
-
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.tag == "hair"){
-			if(coll.gameObject.GetComponent<Hair>().judge()){
+			if(coll.gameObject.GetComponent<Hair>().CheckisAlive()){
 				explode ();
 			}
+		}else if(coll.gameObject.tag == "obstacle"){
+			explode();
 		}
 	}
 
@@ -108,6 +120,7 @@ public class Romaniv : MonoBehaviour {
 		Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 		t_time = Time.realtimeSinceStartup;
 	}
-
-
+	//bool IsGrounded(){
+	//	return Physics.Raycast(transform.position, new Vector3(0, -1, 0), this.collider.radius);
+	//}
 }

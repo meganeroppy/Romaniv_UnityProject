@@ -43,6 +43,16 @@ public class GUIController : MonoBehaviour {
 	}
 	
 	void OnGUI(){
+		//////////////////////
+		if(Input.GetKey("j")){
+			romaniv.SendMessage("jump",SendMessageOptions.DontRequireReceiver);
+		}
+		
+		if(Input.GetKey("s")){
+			romaniv.SendMessage("slap",SendMessageOptions.DontRequireReceiver);
+		}
+
+		///////////////////////
 		GUI.TextField(advance_field, "advance : " + Mathf.Floor(GameController.advance).ToString() + " CM");
 		GUI.TextField(score_field, "Collected Hair : " + GameController.score.ToString());
 		

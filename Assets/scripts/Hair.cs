@@ -40,7 +40,7 @@ public class Hair : MonoBehaviour {
 		}
 	}
 
-	public bool judge(){
+	public bool CheckisAlive(){
 		if(cur_status == STATUS.ALIVE){
 			return true;
 		}else{
