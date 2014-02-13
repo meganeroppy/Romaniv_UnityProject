@@ -20,9 +20,9 @@ public class GUIController : MonoBehaviour {
 	public Texture2D tex_btn_pause;
 
 
-	private float act_btn_width;// = 180.0f;
-	private float act_btn_height;// = 120.0f;
-	private float pause_btn_size;// = 60.0f;
+	private float act_btn_width;
+	private float act_btn_height;
+	private float pause_btn_size;
 
 	//collected hair
 	private Rect score_field;

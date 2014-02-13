@@ -7,6 +7,7 @@ public class ResultDisplay : MonoBehaviour {
 	private float h;
 	private float margin_side;
 	private float margin_updown;
+
 	// Use this for initialization
 	public Texture2D btn_retry;
 	public Texture2D btn_quit;
@@ -76,13 +77,13 @@ public class ResultDisplay : MonoBehaviour {
 					tmp /= 10;
 				}
 				tmp %= 10;
-				GUI.Box(new Rect(w * 0.6f - ( w * 0.03f * i), h * 0.35f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[tmp], GUIStyle.none);
+				GUI.Box(new Rect(w * 0.6f - ( w * 0.044f * i), h * 0.35f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[tmp], GUIStyle.none);
 				
 			}else{
 				int tmp = (int)GameController.advance;
 				tmp %= 10;
 				
-				GUI.Box(new Rect(w * 0.6f - ( w * 0.03f * i), h * 0.35f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[(int)GameController.score % 10], GUIStyle.none);
+				GUI.Box(new Rect(w * 0.6f - ( w * 0.044f * i), h * 0.35f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[(int)GameController.score % 10], GUIStyle.none);
 			}
 		}
 		
@@ -102,13 +103,13 @@ public class ResultDisplay : MonoBehaviour {
 					tmp /= 10;
 				}
 				tmp %= 10;
-				GUI.Box(new Rect(w * 0.6f - ( w * 0.03f * i), h * 0.5f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[tmp], GUIStyle.none);
+				GUI.Box(new Rect(w * 0.6f - ( w * 0.044f * i), h * 0.5f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[tmp], GUIStyle.none);
 				
 			}else{
 				int tmp = (int)GameController.advance;
 				tmp %= 10;
 				
-				GUI.Box(new Rect(w * 0.6f - ( w * 0.03f * i), h * 0.5f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[(int)GameController.advance % 10], GUIStyle.none);
+				GUI.Box(new Rect(w * 0.6f - ( w * 0.044f * i), h * 0.5f, w * TEX_SIZE_LATIO, h * TEX_SIZE_LATIO), tex_num[(int)GameController.advance % 10], GUIStyle.none);
 			}
 		}
 		

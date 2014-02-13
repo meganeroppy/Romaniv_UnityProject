@@ -8,11 +8,13 @@ public class Hair : MonoBehaviour {
 	private float t_time;
 
 	private Animator anim;
+
+	public GameObject gameController;
+
 	// Use this for initialization
 	void Start () {
 		cur_status = STATUS.ALIVE;
 		anim = GetComponent<Animator>();
-
 	}
 	
 	// Update is called once per frame
@@ -35,7 +37,7 @@ public class Hair : MonoBehaviour {
 			transform.rigidbody2D.isKinematic = false;
 			transform.rigidbody2D.AddForce(new Vector2(160, 300));
 			t_time = Time.realtimeSinceStartup;
-			GameController.score += 1;
+			gameController.GetComponent<GameController>().AddScore(1);
 			cur_status = STATUS.DEAD;
 
 		}

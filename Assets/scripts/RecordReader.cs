@@ -28,14 +28,11 @@ public class RecordReader : MonoBehaviour {
 		return records;
 	}
 	*/
+
 	public uint[] GetBestRecord(){
 	///////
 		record_text = record_file.text.Split('\n');
 	//////
-		//Debug.Log("GetBestRecord");
-		for(uint v = 0; v < this.record_text.Length ; v++){
-			Debug.Log("GetBestRecord-> " + this.record_text[v].ToString());
-		}
 		uint[] best_record = new uint[3];
 		string[] tmp_record = new string[3];
 
@@ -47,17 +44,11 @@ public class RecordReader : MonoBehaviour {
 		for (uint cur_id = 0; cur_id < record_text.Length ; cur_id++){
 			tmp_record = record_text[cur_id].Split(',');
 
-			if(best_record[(int)INDEX.KE] +  best_record[(int)INDEX.CM]  < uint.Parse(tmp_record[(int)INDEX.CM]) + uint.Parse(tmp_record[(int)INDEX.CM])){
+			if(best_record[(int)INDEX.KE] +  best_record[(int)INDEX.CM]  < uint.Parse(tmp_record[(int)INDEX.KE]) + uint.Parse(tmp_record[(int)INDEX.CM])){
 				best_record[(int)INDEX.ID] = uint.Parse(tmp_record[(int)INDEX.ID]);
 				best_record[(int)INDEX.KE] = uint.Parse(tmp_record[(int)INDEX.KE]);
 				best_record[(int)INDEX.CM] = uint.Parse(tmp_record[(int)INDEX.CM]);
 			}
-
-			Debug.Log("cur_best:");
-			Debug.Log(best_record[(int)INDEX.ID]);
-			Debug.Log(best_record[(int)INDEX.KE]);
-			Debug.Log(best_record[(int)INDEX.CM]);
-
 		}
 		return best_record;
 	}

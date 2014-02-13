@@ -76,26 +76,26 @@ public class TitleScreen : MonoBehaviour {
 			GUI.DrawTexture(new Rect( w * 0.5f - (logo_width * 0.5f) , 0, logo_width, logo_height), title_logo);
 			
 			if(GUI.Button(new Rect( w *  0.5f - (btn_run_width * 0.5f)  , h * 0.28f, btn_run_width, btn_run_height), btn_run, GUI_btn_run)){//
-				print ("RUN!");
+//				print ("RUN!");
 				Application.LoadLevel("run");
 			}
 			
 			if(GUI.Button(new Rect(w * 0.19f, h * 0.59f, mini_btn_width, mini_btn_height), btn_tweet, GUIStyle.none)){
-				print ("Tweet!");
+//				print ("Tweet!");
 				Application.OpenURL("www.twitter.com");
 			}
 			if(GUI.Button(new Rect(w * 0.32f, h * 0.59f, mini_btn_width, mini_btn_height), btn_facebook, GUIStyle.none)){
-				print ("Facebook!");
+//				print ("Facebook!");
 				Application.OpenURL("www.facebook.com");
 			}
 			if(GUI.Button(new Rect(w * 0.45f, h * 0.59f, mini_btn_width, mini_btn_height), btn_ranking, GUIStyle.none)){
 				cur_modal = MODAL.RANKING;
 			}
 			if(GUI.Button(new Rect(w * 0.58f, h * 0.59f, mini_btn_width, mini_btn_height), btn_option, GUIStyle.none)){
-				print ("Option!");
+//				print ("Option!");
 			}
 			if(GUI.Button(new Rect(w * 0.71f, h * 0.59f, mini_btn_width, mini_btn_height), btn_sound, GUIStyle.none)){
-				print ("Sound!");
+//				print ("Sound!");
 			}
 			
 			if(GUI.Button(new Rect(w * 0.92f, h * 0.92f, w * 0.03f, h * 0.04f), "?")){

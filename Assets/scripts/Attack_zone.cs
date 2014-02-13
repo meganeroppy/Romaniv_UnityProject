@@ -34,9 +34,7 @@ public class Attack_zone : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if(hittable && other.gameObject.tag == "hair"){
-			//print("attack_zone.OnTriggerEnter()");
 //			Destroy(other.gameObject);
-//			hittable = false;
 		}
 	}
 }

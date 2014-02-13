@@ -8,9 +8,9 @@ public class GameController: MonoBehaviour {
 	public enum SCENE{START, RUN, RESULT, PAUSE};
 	public static SCENE cur_scene;
 
-	//Romaniv
-	public GameObject romaniv;
-	private GameObject romanivPrefab;
+	//system
+	private const float DEFAULT_TIMESCALE = 1.0f;
+	private float cur_timeScale = DEFAULT_TIMESCALE;
 
 	//property
 	public static int score;
@@ -31,8 +31,7 @@ public class GameController: MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-
-		Time.timeScale = 1;
+		Time.timeScale = cur_timeScale;
 
 		w = Screen.width;
 		h = Screen.height;
@@ -47,6 +46,7 @@ public class GameController: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log(Time.timeScale);
 		switch(cur_scene){
 			case SCENE.START:
 				GCPrefab = Instantiate( GUIController ) as GameObject;
@@ -62,9 +62,6 @@ public class GameController: MonoBehaviour {
 			default:
 				break;
 		}
-
-
-
 	}
 
 	public static void switchScene(string nextScene){
@@ -82,20 +79,26 @@ public class GameController: MonoBehaviour {
 		cur_scene = SCENE.PAUSE;
 	}
 
-	public static void resume(){
-		Time.timeScale = 1;
+	public void resume(){
+		Time.timeScale = cur_timeScale;
 		cur_scene = SCENE.RUN;
 	}
-/*
+
 	public void AddScore(int num){
 		if(score % 10 == 0 && score != 0){
-			backGround_run.GetComponent<BackGround_Run>().switchPic();
+			//backGround_run.GetComponent<BackGround_Run>().switchPic();
+			Time.timeScale += 0.04f;
+			cur_timeScale = Time.timeScale;
 			score += num; 
 		}else{
 			score += num;
 		}
 	}
-*/
+
+	//public uint GetScore(){
+	//	return this.score;
+	//}
+
 	void reset(){
 		score = 0;
 		advance = 0;

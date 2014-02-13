@@ -31,12 +31,10 @@ public class Fertilizer : MonoBehaviour {
 		subRayOrigin_left = new Vector2(this.transform.position.x - OFFSET_SUBRAY, this.transform.position.y);
 		subRayOrigin_right = new Vector2(this.transform.position.x + OFFSET_SUBRAY, this.transform.position.y);
 
-		/////
 		//GameObject tmp = Instantiate(PosChecker_C, new Vector3(rayOrigin.x, rayOrigin.y, 0.0f), this.transform.rotation) as GameObject;
 		//GameObject tmp2 = Instantiate(PosChecker_L, new Vector3(subRayOrigin_left.x, rayOrigin.y, 0.0f), this.transform.rotation) as GameObject;
 		//GameObject tmp3 = Instantiate(PosChecker_R, new Vector3(subRayOrigin_right.x, rayOrigin.y, 0.0f), this.transform.rotation) as GameObject;
-		/////
-		 
+				 
 		rootPos =  Physics2D.Raycast( rayOrigin, new Vector2(0.0f, -10.0f), 100.0f);
 		subRootPos_left = Physics2D.Raycast( subRayOrigin_left, new Vector2(0.0f, -10.0f), 100.0f);
 		subRootPos_right = Physics2D.Raycast( subRayOrigin_right, new Vector2(0.0f, -10.0f), 100.0f);
@@ -77,8 +75,6 @@ public class Fertilizer : MonoBehaviour {
 
 		}else{
 			hairPointPrefab = Instantiate(hairPoint, rootPos.point, this.transform.rotation) as GameObject;
-			//hairPointPrefab = Instantiate(hairPoint, subRootPos_left.point, this.transform.rotation) as GameObject;
-			//hairPointPrefab = Instantiate(hairPoint, subRootPos_right.point, this.transform.rotation) as GameObject;
 		}
 		Destroy(this.gameObject);
 	}

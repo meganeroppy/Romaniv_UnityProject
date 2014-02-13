@@ -12,8 +12,10 @@ public class PauseMenu : MonoBehaviour {
 	public Texture btn_resume;
 	public Texture btn_quit2;
 	
-	private float slct_btn_width;// = 300.0f;
-	private float slct_btn_height;// = 80.0f;
+	private float slct_btn_width;
+	private float slct_btn_height;
+
+	public GameObject gameController;
 	void Start () {
 		w = GameController.w;
 		h = GameController.h;
@@ -49,14 +51,13 @@ public class PauseMenu : MonoBehaviour {
 			Application.LoadLevel("run");
 		}
 
-
 		if(GUI.Button(new Rect(w * 0.5f - (slct_btn_width * 0.5f), h * 0.7f, slct_btn_width, slct_btn_height), btn_quit2, GUIStyle.none)){
 			Application.LoadLevel("title");
 		}
 	}
 
 	void Resume(){
-		GameController.resume();
+		gameController.GetComponent<GameController>().resume();
 		Destroy(this.gameObject);
 	}
 }
