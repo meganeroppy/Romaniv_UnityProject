@@ -51,7 +51,10 @@ public class RankingDisplay : MonoBehaviour {
 		margin_updown = GameController.margin_updown;
 		recordReaderPrefab = Instantiate(recordReader) as GameObject;
 		this.bestRecord = recordReaderPrefab.GetComponent<RecordReader>().GetBestRecord(); 
-
+		//Debug.Log(this.bestRecord[1].ToString() + " : " + this.bestRecord[2].ToString() );
+		//Debug.Log(this.bestRecord[0]);
+		//Debug.Log(this.bestRecord[1]);
+		//Debug.Log(this.bestRecord[2]);
 
 	}
 	

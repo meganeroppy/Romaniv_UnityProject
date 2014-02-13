@@ -13,9 +13,9 @@ public class HairPoint: MonoBehaviour {
 	void Start () {
 		//this.renderer.enabled = false;
 		hair_height = hair.transform.lossyScale.y;
-		Instantiate(hair, transform.position + new Vector3(0,2,0), transform.rotation);
-		hair.transform.Translate(new Vector3(0, -hair_height ,0));
-
+		Instantiate(hair, transform.position + new Vector3(0,3.5f,0), transform.rotation);
+		//hair.transform.Translate(new Vector3(0, this.transform.position.y -hair_height ,0));
+		//hair.transform.Translate(new Vector3(0, -50.0f ,0));
 		Destroy(this.gameObject);
 	}
 	

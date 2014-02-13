@@ -29,8 +29,9 @@ public class RecordReader : MonoBehaviour {
 	}
 	*/
 	public uint[] GetBestRecord(){
-
-
+	///////
+		record_text = record_file.text.Split('\n');
+	//////
 		//Debug.Log("GetBestRecord");
 		for(uint v = 0; v < this.record_text.Length ; v++){
 			Debug.Log("GetBestRecord-> " + this.record_text[v].ToString());
@@ -51,12 +52,12 @@ public class RecordReader : MonoBehaviour {
 				best_record[(int)INDEX.KE] = uint.Parse(tmp_record[(int)INDEX.KE]);
 				best_record[(int)INDEX.CM] = uint.Parse(tmp_record[(int)INDEX.CM]);
 			}
-			/*
+
 			Debug.Log("cur_best:");
 			Debug.Log(best_record[(int)INDEX.ID]);
 			Debug.Log(best_record[(int)INDEX.KE]);
 			Debug.Log(best_record[(int)INDEX.CM]);
-			*/
+
 		}
 		return best_record;
 	}

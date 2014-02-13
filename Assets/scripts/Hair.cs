@@ -12,6 +12,7 @@ public class Hair : MonoBehaviour {
 	void Start () {
 		cur_status = STATUS.ALIVE;
 		anim = GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
