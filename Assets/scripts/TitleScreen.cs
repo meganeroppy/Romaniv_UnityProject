@@ -64,15 +64,16 @@ public class TitleScreen : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {	
-
+	void Update () {
+		if(Input.GetKey("r")){
+			Application.LoadLevel("run");
+		}
 	}
-	/*0.7f*/
 	void OnGUI(){
 
 		switch(cur_modal){
 		case MODAL.NONE:
-			GUI.DrawTexture(new Rect( Screen.width * 0.5f - (logo_width * 0.5f) , 0, logo_width, logo_height), title_logo);
+			GUI.DrawTexture(new Rect( w * 0.5f - (logo_width * 0.5f) , 0, logo_width, logo_height), title_logo);
 			
 			if(GUI.Button(new Rect( w *  0.5f - (btn_run_width * 0.5f)  , h * 0.28f, btn_run_width, btn_run_height), btn_run, GUI_btn_run)){//
 				print ("RUN!");

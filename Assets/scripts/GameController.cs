@@ -11,10 +11,12 @@ public class GameController: MonoBehaviour {
 	//Romaniv
 	public GameObject romaniv;
 	private GameObject romanivPrefab;
+
 	//property
 	public static int score;
 	public static float advance;
-	public static int numOfLoop;
+	public static uint difficulty;
+
 	public static float w;
 	public static float h;
 	public static float margin_side;
@@ -24,7 +26,9 @@ public class GameController: MonoBehaviour {
 	public GameObject GUIController;
 	private GameObject GCPrefab;
 
-
+	//BackGround
+	public GameObject backGround_run;
+	
 	// Use this for initialization
 	void Start () {
 
@@ -38,39 +42,31 @@ public class GameController: MonoBehaviour {
 		cur_scene = SCENE.START;
 		score = 0;
 		advance = 0.0f;
-		numOfLoop = 0;
-
-
+		difficulty = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		switch(cur_scene){
-		case SCENE.START:
-			GCPrefab = Instantiate( GUIController ) as GameObject;
-			cur_scene = SCENE.RUN;
-			break;
-		case SCENE.RUN:
-			break;
-		case SCENE.RESULT:
-				Destroy(GCPrefab);
-			break;
-		case SCENE.PAUSE:
-			break;
-		default:
-			break;
-		}
-	}
-
-	public static void loop(){
-		numOfLoop += 1;
-		int i = 0;
-		for(;i<10;i++){
-			GameObject.Find("hair_point" + (i+1).ToString()).SendMessage("respawn");
+			case SCENE.START:
+				GCPrefab = Instantiate( GUIController ) as GameObject;
+				cur_scene = SCENE.RUN;
+				break;
+			case SCENE.RUN:
+				break;
+			case SCENE.RESULT:
+					Destroy(GCPrefab);
+				break;
+			case SCENE.PAUSE:
+				break;
+			default:
+				break;
 		}
 
+
+
 	}
+
 	public static void switchScene(string nextScene){
 		if(nextScene == "result"){
 			cur_scene = SCENE.RESULT;
@@ -90,11 +86,18 @@ public class GameController: MonoBehaviour {
 		Time.timeScale = 1;
 		cur_scene = SCENE.RUN;
 	}
-
+/*
+	public void AddScore(int num){
+		if(score % 10 == 0 && score != 0){
+			backGround_run.GetComponent<BackGround_Run>().switchPic();
+			score += num; 
+		}else{
+			score += num;
+		}
+	}
+*/
 	void reset(){
 		score = 0;
 		advance = 0;
-		//transform.position = (GameObject.Find("respawnPoint").transform.position);
-		
 	}
 }

@@ -57,17 +57,16 @@ public class GUIController : MonoBehaviour {
 		score_field = new Rect(w * 0.05f, h * 0.05f, w * 0.2f, h * 0.05f);
 		size_font_score = w * 0.05f;
 	}
-	
-	void OnGUI(){
 
+	void OnGUI(){
 		//control with Keyboard
-		if(Input.GetKey("j")){
+		if(Input.GetKeyDown("j")){
 			romaniv.SendMessage("jump",SendMessageOptions.DontRequireReceiver);
 		}
-		if(Input.GetKey("s")){
+		if(Input.GetKeyDown("s")){
 			romaniv.SendMessage("slap",SendMessageOptions.DontRequireReceiver);
 		}
-		if(Input.GetKey("p") && GameController.cur_scene != GameController.SCENE.PAUSE){
+		if(Input.GetKeyDown("p") && GameController.cur_scene != GameController.SCENE.PAUSE){
 			Pause();
 		}
 
@@ -125,14 +124,19 @@ public class GUIController : MonoBehaviour {
 		GUI.Box(new Rect(w * 0.45f, margin_updown * 0.5f, size_font_score * 1.5f, size_font_score * 1.5f), tex_cm, GUIStyle.none);
 
 
-		//
-		bool btn_jump = GUI.Button(new Rect(Screen.width - act_btn_width, Screen.height - act_btn_height, act_btn_width, act_btn_height), tex_btn_jump, GUIStyle.none);
-		bool btn_slap = GUI.Button(new Rect(0, Screen.height - act_btn_height, act_btn_width, act_btn_height), tex_btn_slap, GUIStyle.none);
+		// jump button
+		bool btn_jump = GUI.Button(new Rect(0, Screen.height - act_btn_height, act_btn_width, act_btn_height), tex_btn_jump, GUIStyle.none);
+
+		//slap button
+		bool btn_slap = GUI.Button(new Rect(Screen.width - act_btn_width, Screen.height - act_btn_height, act_btn_width, act_btn_height), tex_btn_slap, GUIStyle.none);
+
+		//pause button
 		if(GameController.cur_scene != GameController.SCENE.PAUSE){
 			if( GUI.Button(new Rect(w - pause_btn_size - margin_side, margin_updown, pause_btn_size, pause_btn_size), tex_btn_pause, GUIStyle.none)){
 				Pause();
 			}
 		}
+
 		if(btn_jump){
 			romaniv.SendMessage("jump",SendMessageOptions.DontRequireReceiver);
 		}
@@ -158,6 +162,10 @@ public class GUIController : MonoBehaviour {
 		}
 		return numOfDigits;
 
+	}
+
+	void OnMouseDown(){
+		print("OnMouseDown()");
 	}
 }
 

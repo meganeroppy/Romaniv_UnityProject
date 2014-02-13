@@ -44,6 +44,15 @@ public class ResultDisplay : MonoBehaviour {
 		Destroy(recordReaderPrefab.gameObject);
 	}
 
+	void Update () {
+
+		if(Input.GetKey("r")){
+			Application.LoadLevel("run");
+		}
+		if(Input.GetKey("q")){
+			Application.LoadLevel("title");
+		}
+	}
 	void OnGUI(){
 
 

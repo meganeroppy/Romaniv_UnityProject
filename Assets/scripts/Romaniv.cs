@@ -15,6 +15,7 @@ public class Romaniv : MonoBehaviour {
 	private bool JumpIsReady = true;
 
 	private const float START_POS_X = 0.0f;
+	public bool MUTEKI = false;
 
 	//status
 	public float speed = 7.0f;
@@ -174,27 +175,24 @@ public class Romaniv : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		//print ("get into an object -> " + coll.gameObject.name.ToString());
-		if (coll.gameObject.tag == "hair"){
-			if(coll.gameObject.GetComponent<Hair>().CheckisAlive()){
-				explode ();
+		if(!MUTEKI){
+			if (coll.gameObject.tag == "hair"){
+				if(coll.gameObject.GetComponent<Hair>().CheckisAlive()){
+					explode ();
+				}
+			}else if(coll.gameObject.tag == "obstacle"){
+				explode();
+			}else{
 			}
-		}else if(coll.gameObject.tag == "obstacle"){
-			explode();
-		}else{
-			//Debug.Log("OnTriggerEnter2D was called, might have hit something. > " + coll.gameObject.name.ToString());
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		//print ("crash with an object -> " + coll.gameObject.name.ToString());
 		if(coll.gameObject.tag == "ground" && cur_status != STATUS.DEAD){
 			anim.SetTrigger("run_t");
 			cur_status = STATUS.RUN;
 			cur_j_status = JUMP_STATUS.ACSEND;
 		}else{
-		//Debug.Log("OnCollisionEnter2D was called, might have hit something. > " + coll.gameObject.name.ToString());
-
 		}
 	}
 

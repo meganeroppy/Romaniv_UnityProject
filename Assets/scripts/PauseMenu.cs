@@ -30,8 +30,14 @@ public class PauseMenu : MonoBehaviour {
 		if(Input.GetKey("b")){
 			Resume();
 		}
-	
+		if(Input.GetKey("r")){
+			Application.LoadLevel("run");
+		}
+		if(Input.GetKey("q")){
+			Application.LoadLevel("title");
+		}
 	}
+
 	void OnGUI(){
 		GUI.Box(new Rect (margin_side, margin_updown, w - (margin_side * 2), h - (margin_updown * 2)), " ");
 

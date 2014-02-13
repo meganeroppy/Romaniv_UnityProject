@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
   - 212: {fileID: 21200000}
-  - 58: {fileID: 5800000}
   m_Layer: 0
-  m_Name: obstacle3
-  m_TagString: obstacle
+  m_Name: Fertilizer
+  m_TagString: tools
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,21 +24,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.3671036, y: 45.4288673, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalPosition: {x: 74.5976562, y: 65.7509079, z: 13.4765625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!114 &11400000
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Radius: 1.89999998
-  m_Center: {x: 0, y: -2}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e4284790a9c754c87dc8d9a245e925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hairPoint: {fileID: 100000, guid: caf3937292870a04b8504d7931bad0c3, type: 2}
+  obstacle: {fileID: 100000, guid: 3200196a794ed3143836247d276bfa69, type: 2}
+  ObstaclePercent: 25
+  PosChecker_L: {fileID: 100000, guid: 8ae04da66e2a92643ab60a9a875e88b7, type: 2}
+  PosChecker_C: {fileID: 100000, guid: 3862f7b2bb29e0e49b503a882d123fa3, type: 2}
+  PosChecker_R: {fileID: 100000, guid: c87e7cd2ae2d48349b8983a63c618f47, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -60,7 +66,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: a3e213d2eb1577245b6c67760c36f13a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11d35efb60105d74f950968207cefd22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
