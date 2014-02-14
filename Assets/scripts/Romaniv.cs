@@ -45,7 +45,7 @@ public class Romaniv : MonoBehaviour {
 	private GameObject ground;
 	private CircleCollider2D circleCollider;
 	private GameObject mainCamera;
-
+	public GameObject gameController;
 
 	// Use this for initialization
 	void Start () {
@@ -163,6 +163,7 @@ public class Romaniv : MonoBehaviour {
 		Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 		wait_to_dispResult = Time.realtimeSinceStartup;
 		this.transform.DetachChildren();
+		gameController.GetComponent<GameController>().SetTimeScaleAsDefault();
 	}
 
 	/*

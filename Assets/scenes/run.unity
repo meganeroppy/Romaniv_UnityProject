@@ -127,6 +127,7 @@ MonoBehaviour:
   resultDispley: {fileID: 100000, guid: eda9076edadb8554ea5f6a1b8c3e9041, type: 2}
   attack_zone: {fileID: 100000, guid: 1d558d8c52eff794cb0a42dd252bc309, type: 2}
   explosion: {fileID: 100000, guid: b46eaa394fada0e4bbff7c4b098e16c3, type: 2}
+  gameController: {fileID: 0}
 --- !u!50 &18630923
 Rigidbody2D:
   m_ObjectHideFlags: 0

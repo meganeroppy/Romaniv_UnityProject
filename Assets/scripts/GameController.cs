@@ -85,14 +85,18 @@ public class GameController: MonoBehaviour {
 	}
 
 	public void AddScore(int num){
-		if(score % 10 == 0 && score != 0){
+		if(score % 11 == 0 && score != 0){
 			//backGround_run.GetComponent<BackGround_Run>().switchPic();
-			Time.timeScale += 0.04f;
+			Time.timeScale += 0.05f;
 			cur_timeScale = Time.timeScale;
 			score += num; 
 		}else{
 			score += num;
 		}
+	}
+
+	public void SetTimeScaleAsDefault(){
+		Time.timeScale = DEFAULT_TIMESCALE;
 	}
 
 	//public uint GetScore(){
