@@ -39,12 +39,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e4284790a9c754c87dc8d9a245e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hairPoint: {fileID: 100000, guid: caf3937292870a04b8504d7931bad0c3, type: 2}
-  obstacle: {fileID: 100000, guid: 3200196a794ed3143836247d276bfa69, type: 2}
+  hairPointPrefab: {fileID: 100000, guid: caf3937292870a04b8504d7931bad0c3, type: 2}
+  obstaclePointPrefab: {fileID: 100000, guid: 3200196a794ed3143836247d276bfa69, type: 2}
   ObstaclePercent: 25
-  PosChecker_L: {fileID: 100000, guid: 8ae04da66e2a92643ab60a9a875e88b7, type: 2}
-  PosChecker_C: {fileID: 100000, guid: 3862f7b2bb29e0e49b503a882d123fa3, type: 2}
-  PosChecker_R: {fileID: 100000, guid: c87e7cd2ae2d48349b8983a63c618f47, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

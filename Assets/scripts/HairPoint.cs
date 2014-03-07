@@ -2,39 +2,20 @@
 using System.Collections;
 
 public class HairPoint: MonoBehaviour {
-//	private float respawn_delay = 3.0f;
-//	private bool respawnable = false;
+
+	//private enum SIZE{S, M, L, LL};
 	private float t_time;
 	
-	public GameObject hair;
-
+	public GameObject[] hair = new GameObject[4];
+	
 	private float hair_height;
 	// Use this for initialization
 	void Start () {
-		//this.renderer.enabled = false;
-		hair_height = hair.transform.lossyScale.y;
-		Instantiate(hair, transform.position + new Vector3(0,3.5f,0), transform.rotation);
-		//hair.transform.Translate(new Vector3(0, this.transform.position.y -hair_height ,0));
-		//hair.transform.Translate(new Vector3(0, -50.0f ,0));
+		int size = (int)Mathf.Floor(Random.value * 10.0f % 4.0f);
+		//hair_height = (hair[size].GetComponent<BoxCollider2D>().center.y * -2.0f) * 0.9f ;
+		hair_height = (hair[size].GetComponent<BoxCollider2D>().size.y * hair[size].transform.lossyScale.y) * 0.45f;
+		Instantiate(hair[size], transform.position + new Vector3(0, hair_height, 0), transform.rotation);
 		Destroy(this.gameObject);
 	}
 	
-	// Update is called once per frame
-/*	void Update () {
-		if(!respawnable && Time.realtimeSinceStartup - t_time >= respawn_delay){
-			respawnable = true;
-		}
-		if(Mathf.Floor(Time.realtimeSinceStartup % 62.0f) == 0 && respawnable){
-//			respawn();
-		}
-
-	}
-
-	void respawn(){
-		Instantiate(hair, gameObject.transform.position, gameObject.transform.rotation);
-		respawnable = false;
-		t_time = Time.realtimeSinceStartup;
-
-	}
-	*/
 }

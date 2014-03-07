@@ -17,6 +17,7 @@ public class GameController: MonoBehaviour {
 	public static float advance;
 	public static uint difficulty;
 
+	//Size of Display
 	public static float w;
 	public static float h;
 	public static float margin_side;
@@ -46,7 +47,7 @@ public class GameController: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(Time.timeScale);
+//		Debug.Log(Time.timeScale);
 		switch(cur_scene){
 			case SCENE.START:
 				GCPrefab = Instantiate( GUIController ) as GameObject;

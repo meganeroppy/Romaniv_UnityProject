@@ -5,20 +5,17 @@ public class StageMaker : MonoBehaviour {
 	
 	//Making pace = 19.2f;
 	
-	public GameObject[] stage = new GameObject[16];
+	public GameObject[] stagePrefab = new GameObject[16];
 	private float[] leftEndPos = new float[16];
 	private float[] rightEndPos = new float[16];
-	private GameObject stagePrefab;
 	public GameObject Romaniv;
 
-	public GameObject makeSwitch;
-	private GameObject makeSwitchPrefab;
-	public GameObject fertilizer;
-	private GameObject fertilizerPrefab;
-	
+	public GameObject makeSwitchPrefab;
+	public GameObject fertilizerPrefab;
+
 	private bool readyToMake = true;
-	public float distanceToRomaniv;
-	public float distanceToSwitch;
+	private float distanceToRomaniv = 22.0f;
+	private float distanceToSwitch = 18.8f;
 	private float switch_x;
 	private int seed;
 
@@ -79,15 +76,15 @@ public class StageMaker : MonoBehaviour {
 		}
 
 		//Vector3 nextPos = new Vector3(this.transform.position.x, leftEnd[seed], 0.0f);
-		stagePrefab = Instantiate(stage[seed], new Vector3(this.transform.position.x, this.transform.position.y + (curRightEnd - leftEndPos[seed]), this.transform.position.z), this.transform.rotation) as GameObject;
+		Instantiate(stagePrefab[seed], new Vector3(this.transform.position.x, this.transform.position.y + (curRightEnd - leftEndPos[seed]), this.transform.position.z), this.transform.rotation);
 		//Debug.Log("leftEndPos[seed]=" + leftEndPos[seed].ToString() + " : curRightEnd = " + curRightEnd.ToString() );
-		makeSwitchPrefab = Instantiate(makeSwitch, this.transform.position, this.transform.rotation) as GameObject;
-		switch_x = makeSwitchPrefab.transform.position.x;
-		Destroy(makeSwitchPrefab.gameObject);
+		GameObject makeSwitch = Instantiate(makeSwitchPrefab, this.transform.position, this.transform.rotation) as GameObject;
+		switch_x = makeSwitch.transform.position.x;
+		Destroy(makeSwitch.gameObject);
 		curRightEnd = rightEndPos[seed];
 		if(!SafeRun){
-			fertilizerPrefab = Instantiate(fertilizer, new Vector3(this.transform.position.x - 4.0f, this.transform.position.y + 10.0f, this.transform.position.z), this.transform.rotation) as GameObject;
-			fertilizerPrefab = Instantiate(fertilizer, new Vector3(this.transform.position.x + 4.0f, this.transform.position.y + 10.0f, this.transform.position.z), this.transform.rotation) as GameObject;
+			Instantiate(fertilizerPrefab, new Vector3(this.transform.position.x - 4.0f, this.transform.position.y + 10.0f, this.transform.position.z), this.transform.rotation);
+			Instantiate(fertilizerPrefab, new Vector3(this.transform.position.x + 4.0f, this.transform.position.y + 10.0f, this.transform.position.z), this.transform.rotation);
 		}
 	}
 

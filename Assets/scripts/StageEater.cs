@@ -8,8 +8,8 @@ public class StageEater : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		if(col.tag == "ground" || col.tag == "tools" || col.tag == "obstacle" || col.tag == "hair"){
+//		if(col.tag == "ground" || col.tag == "tools" || col.tag == "obstacle" || col.tag == "hair"){
 			Destroy(col.gameObject);
-		}
+//		}
 	}
 }

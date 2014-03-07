@@ -4,11 +4,13 @@ using System.Collections;
 public class TitleScreen : MonoBehaviour {
 
 	//system
-	private enum MODAL{NONE, RANKING, SOUND};
-	private MODAL cur_modal = MODAL.NONE;
-	static public int w = Screen.width;
-	static public int h = Screen.height;
-	private bool popupIsOn = false;
+	public enum MODAL{NONE, RANKING, SOUND};
+	[HideInInspector]
+	public static MODAL cur_modal = MODAL.NONE;
+	public static int w;
+	public static int h;
+	public static float margin_side;
+	public static float margin_updown;
 
 	//GUIStyle
 	public GUIStyle GUI_btn_run;
@@ -48,11 +50,15 @@ public class TitleScreen : MonoBehaviour {
 	public bool debugMsg = false;
 
 	// game object
-	public GameObject rankingDisplay;
-	private GameObject rankingDisplayPrefab;
+	public GameObject rankingDisplayPrefab;
 
 	// Use this for initialization
 	void Start () {
+		w = Screen.width;
+		h = Screen.height;
+		margin_side = w * 0.05f;
+		margin_updown = h * 0.05f; 
+
 		logo_width = w * 0.8f;
 		logo_height = h * 0.3f;
 
@@ -89,6 +95,7 @@ public class TitleScreen : MonoBehaviour {
 				Application.OpenURL("www.facebook.com");
 			}
 			if(GUI.Button(new Rect(w * 0.45f, h * 0.59f, mini_btn_width, mini_btn_height), btn_ranking, GUIStyle.none)){
+				Instantiate(rankingDisplayPrefab);
 				cur_modal = MODAL.RANKING;
 			}
 			if(GUI.Button(new Rect(w * 0.58f, h * 0.59f, mini_btn_width, mini_btn_height), btn_option, GUIStyle.none)){
@@ -112,10 +119,7 @@ public class TitleScreen : MonoBehaviour {
 			}
 			break;	//End Of MODAL.NONE
 		case MODAL.RANKING:
-			if(!popupIsOn){
-				rankingDisplayPrefab = Instantiate(rankingDisplay) as GameObject;
-				popupIsOn = true;
-			}
+
 			break;
 		case MODAL.SOUND:
 			break;
@@ -123,7 +127,9 @@ public class TitleScreen : MonoBehaviour {
 			break;
 		}
 
+	}
 
-
+	public static void SetAsDefault(){
+		cur_modal = MODAL.NONE;
 	}
 }

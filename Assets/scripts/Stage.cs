@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Stage : MonoBehaviour {
-	private float[] leftEndPoses = new float[16];
-	private float[] rightEndPoses = new float[16];
+//	private float[] leftEndPoses = new float[16];
+//	private float[] rightEndPoses = new float[16];
 
 	private float leftEndPos;
 	private float rightEndPos;

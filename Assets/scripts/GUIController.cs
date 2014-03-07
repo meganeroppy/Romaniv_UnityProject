@@ -8,11 +8,10 @@ public class GUIController : MonoBehaviour {
 	private float h;
 	private float margin_side;
 	private float margin_updown;
-
 	
 	//Romaniv
-	//public GameObject romaniv;
 	private GameObject romaniv;
+	private Romaniv romanivScript;
 	
 	//button
 	public Texture2D tex_btn_jump;
@@ -25,27 +24,28 @@ public class GUIController : MonoBehaviour {
 	private float pause_btn_size;
 
 	//collected hair
-	private Rect score_field;
-	private Rect advance_field;
-
-	public Texture2D[] tex_num = new Texture2D[10];
-	public Texture2D tex_ke;
+	//private Rect score_field;
+	//private Rect advance_field;
+	
 	//private float size_tex;
-	public Texture2D tex_hon;
 	private float size_font_score;
 	private uint digit = 1;
 
-	//advance
-	public Texture2D tex_hitohada;
-	public Texture2D tex_cm;
-
+	//Texture
+	private Texture2D[] tex_num = new Texture2D[10];
+	private Texture2D tex_ke;
+	private Texture2D tex_hon;
+	private Texture2D tex_hitohada;
+	private Texture2D tex_cm;
 
 	//Pause Menu
-	public GameObject PauseMenu;
-	
+	public GameObject PauseMenuPrefab;
+	public GameObject fontManagerPrefab;
 	// Use this for initialization
 	void Start () {
 		romaniv = GameObject.Find("Romaniv");
+		romanivScript =  romaniv.GetComponent<Romaniv>();
+
 		w = GameController.w;
 		h = GameController.h;
 		act_btn_width = w * 0.22f;
@@ -53,18 +53,28 @@ public class GUIController : MonoBehaviour {
 		pause_btn_size = w * 0.07f;
 		margin_side = GameController.margin_side;
 		margin_updown = GameController.margin_updown;
-		advance_field = new Rect(w * 0.35f, h * 0.05f, w * 0.2f, h * 0.05f);
-		score_field = new Rect(w * 0.05f, h * 0.05f, w * 0.2f, h * 0.05f);
+		//advance_field = new Rect(w * 0.35f, h * 0.05f, w * 0.2f, h * 0.05f);
+		//score_field = new Rect(w * 0.05f, h * 0.05f, w * 0.2f, h * 0.05f);
 		size_font_score = w * 0.05f;
+
+		GameObject fontManager = Instantiate(fontManagerPrefab) as GameObject;
+		tex_num = fontManager.GetComponent<FontManager>().tex_num;
+		tex_ke = fontManager.GetComponent<FontManager>().tex_ke;
+		tex_hon = fontManager.GetComponent<FontManager>().tex_hon;
+		tex_hitohada = fontManager.GetComponent<FontManager>().tex_hitohada;
+		tex_cm = fontManager.GetComponent<FontManager>().tex_cm;
+		Destroy(fontManager.gameObject);
 	}
 
+
 	void OnGUI(){
+
 		//control with Keyboard
 		if(Input.GetKeyDown("j")){
-			romaniv.SendMessage("jump",SendMessageOptions.DontRequireReceiver);
+			romanivScript.jump();
 		}
 		if(Input.GetKeyDown("s")){
-			romaniv.SendMessage("slap",SendMessageOptions.DontRequireReceiver);
+			romanivScript.slap();
 		}
 		if(Input.GetKeyDown("p") && GameController.cur_scene != GameController.SCENE.PAUSE){
 			Pause();
@@ -78,18 +88,17 @@ public class GUIController : MonoBehaviour {
 
 		for(uint i = digit ; i != 0 ; i--){
 			if(i > 1 ){	
-				int tmp = (int)GameController.score;
-				//Debug.Log(tmp);
-				
+				int index = (int)GameController.score;
+
 				for(uint j = i ; j > 1 ; j--){
-					tmp /= 10;
+					index /= 10;
 				}
-				tmp %= 10;
-				GUI.Box(new Rect(w * 0.13f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[tmp], GUIStyle.none);
+				index %= 10;
+				GUI.Box(new Rect(w * 0.13f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[index], GUIStyle.none);
 				
 			}else{
-				int tmp = (int)GameController.advance;
-				tmp %= 10;
+				int index = (int)GameController.advance;
+				index %= 10;
 				
 				GUI.Box(new Rect(w * 0.13f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[(int)GameController.score % 10], GUIStyle.none);
 			}
@@ -104,25 +113,23 @@ public class GUIController : MonoBehaviour {
 
 		for(uint i = digit ; i != 0 ; i--){
 			if(i > 1 ){	
-				int tmp = (int)GameController.advance;
-				//Debug.Log(tmp);
+				int index = (int)GameController.advance;
 
 				for(uint j = i ; j > 1 ; j--){
-					tmp /= 10;
+					index /= 10;
 				}
-				tmp %= 10;
-				GUI.Box(new Rect(w * 0.43f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[tmp], GUIStyle.none);
+				index %= 10;
+				GUI.Box(new Rect(w * 0.43f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[index], GUIStyle.none);
 
 			}else{
-				int tmp = (int)GameController.advance;
-				tmp %= 10;
+				int index = (int)GameController.advance;
+				index %= 10;
 
 				GUI.Box(new Rect(w * 0.43f - ( w * 0.03f * i), margin_updown, size_font_score, size_font_score), tex_num[(int)GameController.advance % 10], GUIStyle.none);
 			}
 		}
 
 		GUI.Box(new Rect(w * 0.45f, margin_updown * 0.5f, size_font_score * 1.5f, size_font_score * 1.5f), tex_cm, GUIStyle.none);
-
 
 		// jump button
 		bool btn_jump = GUI.Button(new Rect(0, Screen.height - act_btn_height, act_btn_width, act_btn_height), tex_btn_jump, GUIStyle.none);
@@ -138,17 +145,17 @@ public class GUIController : MonoBehaviour {
 		}
 
 		if(btn_jump){
-			romaniv.SendMessage("jump",SendMessageOptions.DontRequireReceiver);
+			romanivScript.jump();
 		}
 		if(btn_slap){
-			romaniv.SendMessage("slap",SendMessageOptions.DontRequireReceiver);
+			romanivScript.slap();
 		}
 
 	}
 
 	void Pause(){
 		GameController.cur_scene = GameController.SCENE.PAUSE;
-		GameObject pauseMenuPrefab = Instantiate(PauseMenu) as GameObject;
+		Instantiate(PauseMenuPrefab);
 	}
 
 	uint getDigits(int num){

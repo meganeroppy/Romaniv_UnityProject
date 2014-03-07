@@ -16,31 +16,25 @@ public class RankingDisplay : MonoBehaviour {
 	private float slct_btn_width;// = 360.0f;
 	private float slct_btn_height;// = 100.0f;
 
-	public Texture2D tex_saikou;
-	public Texture2D tex_score;
-	
-	public Texture2D[] tex_num = new Texture2D[10];
-	public Texture2D tex_ke;
 
-	public Texture2D tex_hon;
 	private float size_font_score;
 	private uint digit = 1;
 	
 	private const float TEX_LATIO = 0.2f;
 	private const float TEX_LATIO_SMALL = 0.12f;
-	
-	//advance
-	public Texture2D tex_hitohada;
-	public Texture2D tex_cm;
+
+	//Texture
+	private Texture2D tex_saikou;
+	private Texture2D tex_score;
+	private Texture2D[] tex_num = new Texture2D[10];
+	private Texture2D tex_ke;
+	private Texture2D tex_hon;
+	private Texture2D tex_hitohada;
+	private Texture2D tex_cm;
 
 	//game object
-	public GameObject recordReader;
-	private GameObject recordReaderPrefab;
-
-	/////////////////////////////////////////////
-	private string tmpString;
-	private string[] tmpStrings; 
-	////////////////////////////////////////////////
+	public GameObject recordManagerPrefab;
+	public GameObject fontManagerPrefab;
 
 
 	void Start () {
@@ -50,12 +44,22 @@ public class RankingDisplay : MonoBehaviour {
 		slct_btn_height = h * 0.20f;
 		margin_side = GameController.margin_side;
 		margin_updown = GameController.margin_updown;
-		recordReaderPrefab = Instantiate(recordReader) as GameObject;
-		this.bestRecord = recordReaderPrefab.GetComponent<RecordReader>().GetBestRecord(); 
-		Debug.Log(this.bestRecord[1].ToString() + " : " + this.bestRecord[2].ToString() );
-		Debug.Log(this.bestRecord[0]);
-		Debug.Log(this.bestRecord[1]);
-		Debug.Log(this.bestRecord[2]);
+
+		GameObject fontManager = Instantiate(fontManagerPrefab) as GameObject;
+		tex_saikou = fontManager.GetComponent<FontManager>().tex_saikou;
+		tex_score = fontManager.GetComponent<FontManager>().tex_score;
+		tex_num = fontManager.GetComponent<FontManager>().tex_num;
+		tex_ke = fontManager.GetComponent<FontManager>().tex_ke;
+		tex_hon = fontManager.GetComponent<FontManager>().tex_hon;
+		tex_hitohada = fontManager.GetComponent<FontManager>().tex_hitohada;
+		tex_cm = fontManager.GetComponent<FontManager>().tex_cm;
+		Destroy(fontManager.gameObject);
+
+		GameObject recordManager = Instantiate(recordManagerPrefab) as GameObject;
+		this.bestRecord = recordManager.GetComponent<RecordManager>().GetBestRecord(); 
+		//Debug.Log(this.bestRecord[1].ToString() + " : " + this.bestRecord[2].ToString() );
+		Destroy( recordManager.gameObject);
+
 	}
 	
 	void OnGUI(){
@@ -94,7 +98,7 @@ public class RankingDisplay : MonoBehaviour {
 		GUI.Box(new Rect(w * 0.65f, h * 0.35f, w * TEX_LATIO_SMALL, h * TEX_LATIO_SMALL), tex_hon, GUIStyle.none);
 		
 		// score hitohada
-		GUI.Box(new Rect(w * 0.25f, h * 0.5f, w * TEX_LATIO_SMALL * 1.0f, h * TEX_LATIO_SMALL * 1.0f), tex_hitohada, GUIStyle.none);
+		GUI.Box(new Rect(w * 0.25f, h * 0.5f, w * TEX_LATIO_SMALL * 1.2f, h * TEX_LATIO_SMALL * 1.2f), tex_hitohada, GUIStyle.none);
 		uint best_cm = this.bestRecord[(int)INDEX.CM];
 
 		digit = getDigits(best_cm);
@@ -122,7 +126,8 @@ public class RankingDisplay : MonoBehaviour {
 
 		// quit button
 		if(GUI.Button(new Rect(w * 0.5f - (slct_btn_width * 0.5f), h * 0.65f, slct_btn_width, slct_btn_height), btn_top, GUIStyle.none)){
-			Application.LoadLevel("title");
+			TitleScreen.SetAsDefault();
+			Destroy(this.gameObject);
 		}
 	}
 	

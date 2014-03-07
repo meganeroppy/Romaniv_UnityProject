@@ -12,25 +12,30 @@ public class ResultDisplay : MonoBehaviour {
 	public Texture2D btn_retry;
 	public Texture2D btn_quit;
 
-	public Texture2D tex_score;
-
-	public Texture2D[] tex_num = new Texture2D[10];
-	public Texture2D tex_ke;
-	//private float size_tex;
-	public Texture2D tex_hon;
 	private const float TEX_SIZE_LATIO = 0.13f;
 	private const float TEX_SIZE_LATIO_SCORE = 0.18f;
 
 	private uint digit = 1;
 	
-	//advance
-	public Texture2D tex_hitohada;
-	public Texture2D tex_cm;
+	//Texture
+	private Texture2D tex_score;
+	
+	private Texture2D[] tex_num = new Texture2D[10];
+	private Texture2D tex_ke;
+	
+	private Texture2D tex_hon;
+	
+	private Texture2D tex_hitohada;
+	private Texture2D tex_cm;
 
+	//size 
 	private float slct_btn_width;// = 360.0f;
 	private float slct_btn_height;// = 100.0f;
 
-	public GameObject recordReader;
+	//gameObject
+	public GameObject recordManagerPrefab;
+	public GameObject fontManagerPrefab;
+
 	void Start () {
 		w = GameController.w;
 
@@ -40,9 +45,18 @@ public class ResultDisplay : MonoBehaviour {
 		margin_side = GameController.margin_side;
 		margin_updown = GameController.margin_updown;
 
-		GameObject recordReaderPrefab = Instantiate(recordReader) as GameObject;
-		recordReaderPrefab.GetComponent<RecordReader>().AppendToRecord(GameController.score.ToString() + ',' + Mathf.Floor(GameController.advance).ToString());
-		Destroy(recordReaderPrefab.gameObject);
+		GameObject fontManager = Instantiate(fontManagerPrefab) as GameObject;
+		tex_score = fontManager.GetComponent<FontManager>().tex_score;
+		tex_num = fontManager.GetComponent<FontManager>().tex_num;
+		tex_ke = fontManager.GetComponent<FontManager>().tex_ke;
+		tex_hon = fontManager.GetComponent<FontManager>().tex_hon;
+		tex_hitohada = fontManager.GetComponent<FontManager>().tex_hitohada;
+		tex_cm = fontManager.GetComponent<FontManager>().tex_cm;
+		Destroy(fontManager.gameObject);
+
+		GameObject recordManager = Instantiate(recordManagerPrefab) as GameObject;
+		recordManager.GetComponent<RecordManager>().AppendToRecord(GameController.score.ToString() + ',' + Mathf.Floor(GameController.advance).ToString());
+		Destroy(recordManager.gameObject);
 	}
 
 	void Update () {

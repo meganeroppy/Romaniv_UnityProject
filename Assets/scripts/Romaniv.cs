@@ -22,8 +22,8 @@ public class Romaniv : MonoBehaviour {
 	public bool MUTEKI = false;
 
 	//status
-	public float runSpeed = 7.0f;
-	public float jumpForce = 650.0f;
+	private float runSpeed = 7.0f;
+	private float jumpForce = 650.0f;
 
 	public enum STATUS{RUN, STOP, JUMP, SLAP, DEAD};
 	public STATUS cur_status;
@@ -32,7 +32,6 @@ public class Romaniv : MonoBehaviour {
 
 	private const float MAX_SPEED = 5.0f;
 	private bool gameOver = false;
-
 	
 	//gameover
 	public GameObject resultDispley;
@@ -42,18 +41,14 @@ public class Romaniv : MonoBehaviour {
 	//game objects
 	public GameObject attack_zone;
 	public GameObject explosion;
-	private GameObject ground;
-	private CircleCollider2D circleCollider;
-	private GameObject mainCamera;
+//	private CircleCollider2D circleCollider;
 	public GameObject gameController;
 
 	// Use this for initialization
 	void Start () {
-		mainCamera = transform.FindChild("Main Camera").gameObject;
 		cur_j_status = JUMP_STATUS.ACSEND;
 
-		ground = GameObject.FindWithTag("ground");
-		circleCollider = this.GetComponent<CircleCollider2D>();
+//		circleCollider = this.GetComponent<CircleCollider2D>();
 
 		cur_status = STATUS.JUMP;
 		anim = GetComponent<Animator>();

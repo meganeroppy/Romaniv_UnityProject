@@ -29,13 +29,13 @@ public class PauseMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey("b")){
+		if(Input.GetKeyDown("b")){
 			Resume();
 		}
-		if(Input.GetKey("r")){
+		if(Input.GetKeyDown("r")){
 			Application.LoadLevel("run");
 		}
-		if(Input.GetKey("q")){
+		if(Input.GetKeyDown("q")){
 			Application.LoadLevel("title");
 		}
 	}

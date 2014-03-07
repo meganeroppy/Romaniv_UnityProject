@@ -39,28 +39,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5884baad313794399ed569f538aad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage:
-  - {fileID: 100000, guid: 713b9ca178aae2642ac46b7dc5cde8b9, type: 2}
-  - {fileID: 100000, guid: 17422c213ed022640b5a67c496b05ec6, type: 2}
-  - {fileID: 100000, guid: ac107b22a5a6bba42b5ab090f0bad844, type: 2}
-  - {fileID: 100000, guid: 5aa34e0d503d86b4f8af30bc6a4ac9ed, type: 2}
-  - {fileID: 100000, guid: 44f7db6f01de11c4db1e08932db08608, type: 2}
-  - {fileID: 100000, guid: acd7aecb1f210354e89859b9b3d7e0ff, type: 2}
-  - {fileID: 100000, guid: 540d38e8850b284439aeadb350f257a5, type: 2}
-  - {fileID: 100000, guid: 2f338e3fdadda91478ece905cd70142c, type: 2}
+  stagePrefab:
+  - {fileID: 100000, guid: 05dad9230c833b1499f03caa1462e325, type: 2}
+  - {fileID: 100000, guid: e6625954f863776478261a64f706e2cd, type: 2}
+  - {fileID: 100000, guid: c6e962825c3d9e14bb0d326d3cee8395, type: 2}
+  - {fileID: 100004, guid: 60bc40de8d735c542bf36663c0ee96c8, type: 2}
+  - {fileID: 100002, guid: a1f253d268ed50c4591cae363168d114, type: 2}
+  - {fileID: 100002, guid: f99d375045172f546b94e25f6d455c1a, type: 2}
+  - {fileID: 100002, guid: 99db0def3f0af8e479a4673e9272d73a, type: 2}
+  - {fileID: 100004, guid: d722cca1c596cb245b877cd1f7aa95cd, type: 2}
   - {fileID: 100000, guid: 66bb7aa17d370ae438b61c0686116584, type: 2}
-  - {fileID: 100000, guid: b1e6c8b2aecc24241bea268d814d4c04, type: 2}
-  - {fileID: 100000, guid: 3372fcba38bea364584083bc62a9b786, type: 2}
-  - {fileID: 100000, guid: d3ba231825612c14fa91e6bd544d1f0a, type: 2}
-  - {fileID: 100000, guid: 15206ce50b7ee454486e3504a8119cef, type: 2}
-  - {fileID: 100000, guid: c2c159cb7a5db9b4197a07f0b788698f, type: 2}
-  - {fileID: 100000, guid: 54c1d0e6310567d439174cfddadcf5d3, type: 2}
-  - {fileID: 100000, guid: bc18ddeb446ea4e4d99b644f1934864c, type: 2}
-  Romaniv: {fileID: 0}
-  makeSwitch: {fileID: 100000, guid: 95eca01594ba9f2439b299e12c5a1119, type: 2}
-  raycaster: {fileID: 0}
-  distanceToRomaniv: 22
-  distanceToSwitch: 18.7999992
+  - {fileID: 100004, guid: d9aa485c1b0d65c459453cf73570c840, type: 2}
+  - {fileID: 100004, guid: 2da2e51cd287c7a4c8d7cfe95560cbf9, type: 2}
+  - {fileID: 100004, guid: 8d2d724c3167a554188d4a9366f5e7c7, type: 2}
+  - {fileID: 100004, guid: 4c2937fbd7535ce40ada305a4e0204e3, type: 2}
+  - {fileID: 100004, guid: 2ca3bcbf15655cb49a7724bd54e0397f, type: 2}
+  - {fileID: 100002, guid: 1c517fbd4b4212344af70783d99c61ac, type: 2}
+  - {fileID: 100004, guid: ef663f4f836435040b580ce3de5bd7d3, type: 2}
+  Romaniv: {fileID: 100002, guid: d3d3acd24182d234c81ec63576677fa4, type: 2}
+  makeSwitchPrefab: {fileID: 100000, guid: 95eca01594ba9f2439b299e12c5a1119, type: 2}
+  fertilizerPrefab: {fileID: 100000, guid: 5fbbca264056e5244b255f8a30aabc23, type: 2}
   SafeRun: 0
 --- !u!212 &21200000
 SpriteRenderer:

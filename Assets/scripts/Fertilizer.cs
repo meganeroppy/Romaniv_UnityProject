@@ -3,10 +3,8 @@ using System.Collections;
 
 public class Fertilizer : MonoBehaviour {
 
-	public GameObject hairPoint;
-	private GameObject hairPointPrefab;
-	public GameObject obstacle;
-	private GameObject obstaclePrefab;
+	public GameObject hairPointPrefab;
+	public GameObject obstaclePointPrefab;
 	private RaycastHit2D rootPos;
 	private RaycastHit2D subRootPos_left;
 	private RaycastHit2D subRootPos_right;
@@ -18,9 +16,9 @@ public class Fertilizer : MonoBehaviour {
 	
 	public float ObstaclePercent = 25.0f;
 
-	public GameObject PosChecker_L;
-	public GameObject PosChecker_C;
-	public GameObject PosChecker_R;
+//	public GameObject PosChecker_L;
+//	public GameObject PosChecker_C;
+//	public GameObject PosChecker_R;
 
 	// Use this for initialization
 	void Start () {
@@ -35,12 +33,11 @@ public class Fertilizer : MonoBehaviour {
 		//GameObject tmp2 = Instantiate(PosChecker_L, new Vector3(subRayOrigin_left.x, rayOrigin.y, 0.0f), this.transform.rotation) as GameObject;
 		//GameObject tmp3 = Instantiate(PosChecker_R, new Vector3(subRayOrigin_right.x, rayOrigin.y, 0.0f), this.transform.rotation) as GameObject;
 				 
-		rootPos =  Physics2D.Raycast( rayOrigin, new Vector2(0.0f, -10.0f), 100.0f);
-		subRootPos_left = Physics2D.Raycast( subRayOrigin_left, new Vector2(0.0f, -10.0f), 100.0f);
-		subRootPos_right = Physics2D.Raycast( subRayOrigin_right, new Vector2(0.0f, -10.0f), 100.0f);
+		rootPos =  Physics2D.Raycast( rayOrigin, rayDirection, 100.0f);
+		subRootPos_left = Physics2D.Raycast( subRayOrigin_left, rayDirection, 100.0f);
+		subRootPos_right = Physics2D.Raycast( subRayOrigin_right, rayDirection, 100.0f);
 
 		if(seed <= ObstaclePercent){
-
 			float centerPosY;
 
 			// Position
@@ -71,10 +68,10 @@ public class Fertilizer : MonoBehaviour {
 			float carve =  Mathf.Atan2((float)subRootPos_left.point.y - (float)subRootPos_right.point.y, (float)subRootPos_left.point.x - (float)subRootPos_right.point.x);
 			carve = (carve * 180.0f) / Mathf.PI - 180.0f;
 
-			obstaclePrefab = Instantiate(obstacle, new Vector2(rootPos.point.x, centerPosY), Quaternion.Euler(0.0f, 0.0f, carve)) as GameObject;
+			Instantiate(obstaclePointPrefab, new Vector2(rootPos.point.x, centerPosY), Quaternion.Euler(0.0f, 0.0f, carve));
 
 		}else{
-			hairPointPrefab = Instantiate(hairPoint, rootPos.point, this.transform.rotation) as GameObject;
+			Instantiate(hairPointPrefab, rootPos.point, this.transform.rotation);
 		}
 		Destroy(this.gameObject);
 	}

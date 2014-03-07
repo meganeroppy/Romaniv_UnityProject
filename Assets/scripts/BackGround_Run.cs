@@ -7,11 +7,13 @@ public class BackGround_Run: MonoBehaviour {
 	public METHOD changeMethod = METHOD.BY_DATE;
 	private enum HOUR{DAYTIME, SUNSET, NIGHT};
 	private HOUR cur_hour;
+	
+	//GameObject
 	public GameObject daytime;
 	public GameObject sunset;
 	public GameObject night;
 	private GameObject cur_BG;
-
+	//public GameObject romaniv;
 	
 	// Use this for initialization
 	void Start () {
@@ -35,6 +37,10 @@ public class BackGround_Run: MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+
+
+		//this.transform.position = romaniv.transform.position;
+		//Debug.Log(romaniv.transform.position);
 
 		if(Input.GetKeyDown("z")){
 			Destroy(cur_BG.gameObject);
