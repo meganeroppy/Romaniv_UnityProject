@@ -19,35 +19,41 @@ public class Romaniv : MonoBehaviour {
 	private bool nextActionIsReady = true;
 
 	private const float START_POS_X = 0.0f;
-	public bool MUTEKI = false;
+	public bool MUTEKI;
+
+	//SE
+	public AudioClip se_jump;
+	public AudioClip se_slap1;
+	public AudioClip se_slap2;
+	public AudioClip se_exp;
 
 	//status
 	private float runSpeed = 7.0f;
 	private float jumpForce = 650.0f;
 
 	public enum STATUS{RUN, STOP, JUMP, SLAP, DEAD};
-	public STATUS cur_status;
+	public static STATUS cur_status;
 	public enum JUMP_STATUS{ACSEND, DESCEND};
-	public JUMP_STATUS cur_j_status;
+	public static JUMP_STATUS cur_j_status;
 
 	private const float MAX_SPEED = 5.0f;
 	private bool gameOver = false;
 	
-	//gameover
-	public GameObject resultDispley;
-
 	private Animator anim;
 
 	//game objects
 	public GameObject attack_zone;
 	public GameObject explosion;
 //	private CircleCollider2D circleCollider;
-	public GameObject gameController;
+	private GameController controller;
+	private SoundManager sound;
 
 	// Use this for initialization
 	void Start () {
 		cur_j_status = JUMP_STATUS.ACSEND;
-
+		GameObject gameController = GameObject.Find("GameController");
+		controller = gameController.GetComponent<GameController>();
+		sound = gameController.GetComponent<SoundManager>();
 //		circleCollider = this.GetComponent<CircleCollider2D>();
 
 		cur_status = STATUS.JUMP;
@@ -87,16 +93,14 @@ public class Romaniv : MonoBehaviour {
 				break;
 			case STATUS.SLAP:
 				transform.Translate(Vector2.right * runSpeed * Time.deltaTime);	//walking right direction
-				anim.SetTrigger("slap_t");
 				GameObject atk = 
-				 Instantiate(attack_zone, (new Vector3(this.transform.position.x + (float)1.5, this.transform.position.y - (float)0.5, 0)), Quaternion.identity) as GameObject;;
+				 Instantiate(attack_zone, (new Vector3(this.transform.position.x + (float)1.5, this.transform.position.y - (float)0.5, 0)), Quaternion.identity) as GameObject;
 				atk.transform.parent = this.gameObject.transform;
 				cur_status = STATUS.RUN;
 				break;
 			case STATUS.DEAD:
 				if(Time.realtimeSinceStartup - wait_to_dispResult >= 3.0f && !gameOver){
-					Instantiate(resultDispley);
-				GameController.switchScene("result");
+				controller.switchScene("result");
 					gameOver = true;
 				}
 				break;
@@ -105,11 +109,12 @@ public class Romaniv : MonoBehaviour {
 		}//end of switch_status
 
 	}
-	public void jump(){
+	public void Jump(){
 		if(nextActionIsReady){
 			if(cur_status == STATUS.RUN){
-				rigidbody2D.AddForce( new Vector2(0.0f, jumpForce));
+				rigidbody2D.AddForce(Vector2.up * jumpForce);
 				anim.SetTrigger("jump_t");
+				sound.PlaySE (se_jump, 0.2f);
 				cur_status = STATUS.JUMP;
 				cur_j_status = JUMP_STATUS.ACSEND;
 				wait_to_reuse = TIME_TO_REUSE;
@@ -118,26 +123,18 @@ public class Romaniv : MonoBehaviour {
 		}
 	}
 	
-	public void slap(){
+	public void Slap(){
 		if(nextActionIsReady){
 			if(cur_status == STATUS.RUN){
 				anim.SetTrigger("slap_t");
+				if(Mathf.Round(Random.Range(0, 2)) == 0){
+					sound.PlaySE (se_slap1, 0.8f);
+				}else{
+					sound.PlaySE (se_slap2, 0.5f);
+				}
 				cur_status = STATUS.SLAP;
 				wait_to_reuse = TIME_TO_REUSE;
 				nextActionIsReady = false;
-			}
-		}
-	}
-
-	void OnTriggerEnter2D(Collider2D coll) {
-		if(!MUTEKI){
-			if (coll.gameObject.tag == "hair"){
-				if(coll.gameObject.GetComponent<Hair>().CheckisAlive()){
-					explode ();
-				}
-			}else if(coll.gameObject.tag == "obstacle"){
-				explode();
-			}else{
 			}
 		}
 	}
@@ -151,14 +148,21 @@ public class Romaniv : MonoBehaviour {
 		}
 	}
 
-	void explode(){
+	public void Crush(){
+		if(!MUTEKI){
+			explode();
+			sound.PlaySE (se_exp, 0.2f);
+		}
+	}
+
+	private void explode(){
 		cur_status = STATUS.DEAD;
 		this.renderer.enabled = false;
 		this.collider2D.enabled = false;
 		Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 		wait_to_dispResult = Time.realtimeSinceStartup;
 		this.transform.DetachChildren();
-		gameController.GetComponent<GameController>().SetTimeScaleAsDefault();
+		controller.SetTimeScaleAsDefault();
 	}
 
 	/*

@@ -37,9 +37,5 @@ public class Stage : MonoBehaviour {
 
 		Debug.Log(this.name +  leftEndPos.ToString() + " : " + rightEndPos.ToString());
 */	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

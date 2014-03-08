@@ -12,6 +12,9 @@ public class TitleScreen : MonoBehaviour {
 	public static float margin_side;
 	public static float margin_updown;
 
+	//SE
+	public AudioClip se_menu; 
+
 	//GUIStyle
 	public GUIStyle GUI_btn_run;
 	public float buttonLatio = 1f; 
@@ -31,6 +34,7 @@ public class TitleScreen : MonoBehaviour {
 	public Texture btn_option;
 	private float mini_btn_width;
 	private float mini_btn_height;
+
 	//sound
 	public Texture btn_sound;
 
@@ -50,10 +54,14 @@ public class TitleScreen : MonoBehaviour {
 	public bool debugMsg = false;
 
 	// game object
-	public GameObject rankingDisplayPrefab;
+	public GameObject rankingDisplay;
+	public GameObject soundSetting;
 
+	private SoundManager sound;
+	
 	// Use this for initialization
-	void Start () {
+	void Start () {				
+
 		w = Screen.width;
 		h = Screen.height;
 		margin_side = w * 0.05f;
@@ -67,12 +75,14 @@ public class TitleScreen : MonoBehaviour {
 
 		mini_btn_width = w * 0.12f;
 		mini_btn_height = mini_btn_width;
+
+		sound = GetComponent<SoundManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKey("r")){
-			Application.LoadLevel("run");
+			StartCoroutine(WaitAndStart(0.5f));
 		}
 	}
 	void OnGUI(){
@@ -81,31 +91,34 @@ public class TitleScreen : MonoBehaviour {
 		case MODAL.NONE:
 			GUI.DrawTexture(new Rect( w * 0.5f - (logo_width * 0.5f) , 0, logo_width, logo_height), title_logo);
 			
-			if(GUI.Button(new Rect( w *  0.5f - (btn_run_width * 0.5f)  , h * 0.28f, btn_run_width, btn_run_height), btn_run, GUI_btn_run)){//
-//				print ("RUN!");
-				Application.LoadLevel("run");
+			if(GUI.Button(new Rect( w *  0.5f - (btn_run_width * 0.5f)  , h * 0.28f, btn_run_width, btn_run_height), btn_run, GUI_btn_run)){
+				StartCoroutine(WaitAndStart(0.5f));
 			}
 			
 			if(GUI.Button(new Rect(w * 0.19f, h * 0.59f, mini_btn_width, mini_btn_height), btn_tweet, GUIStyle.none)){
-//				print ("Tweet!");
+				sound.PlaySE(se_menu);
 				Application.OpenURL("www.twitter.com");
 			}
 			if(GUI.Button(new Rect(w * 0.32f, h * 0.59f, mini_btn_width, mini_btn_height), btn_facebook, GUIStyle.none)){
-//				print ("Facebook!");
+				sound.PlaySE(se_menu);
 				Application.OpenURL("www.facebook.com");
 			}
 			if(GUI.Button(new Rect(w * 0.45f, h * 0.59f, mini_btn_width, mini_btn_height), btn_ranking, GUIStyle.none)){
-				Instantiate(rankingDisplayPrefab);
+				sound.PlaySE(se_menu);
+				Instantiate(rankingDisplay);
 				cur_modal = MODAL.RANKING;
 			}
 			if(GUI.Button(new Rect(w * 0.58f, h * 0.59f, mini_btn_width, mini_btn_height), btn_option, GUIStyle.none)){
-//				print ("Option!");
+				sound.PlaySE(se_menu);
 			}
 			if(GUI.Button(new Rect(w * 0.71f, h * 0.59f, mini_btn_width, mini_btn_height), btn_sound, GUIStyle.none)){
-//				print ("Sound!");
+				sound.PlaySE(se_menu);
+				//Instantiate(soundSetting);
+				//cur_modal = MODAL.SOUND;
 			}
 			
 			if(GUI.Button(new Rect(w * 0.92f, h * 0.92f, w * 0.03f, h * 0.04f), "?")){
+				sound.PlaySE(se_menu);
 				displaying = !displaying;
 			}
 			if(displaying){
@@ -119,17 +132,25 @@ public class TitleScreen : MonoBehaviour {
 			}
 			break;	//End Of MODAL.NONE
 		case MODAL.RANKING:
-
 			break;
 		case MODAL.SOUND:
 			break;
 		default:
 			break;
 		}
-
 	}
 
-	public static void SetAsDefault(){
+	IEnumerator WaitAndStart(float time) {
+		sound.PlaySE(se_menu);
+		yield return new WaitForSeconds(time);
+		Application.LoadLevel("run");
+	}
+
+	public void SetAsDefault(){
+		sound.PlaySE(se_menu);
 		cur_modal = MODAL.NONE;
 	}
+	
+
+
 }

@@ -7,14 +7,15 @@ public class Hair : MonoBehaviour {
 	private STATUS cur_status;
 	private float t_time;
 
-//	private Animator anim;
+	//public AudioClip damage1;
 
-	public GameObject gameController;
+//	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		cur_status = STATUS.ALIVE;
 	//	anim = GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
@@ -34,6 +35,8 @@ public class Hair : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll){
 		if(coll.gameObject.tag == "attack_zone" && cur_status == STATUS.ALIVE){
+
+			audio.Play();
 			//anim.SetTrigger("death_t");
 			float dirX = (Random.value * 400.0f) - 400.0f;
 			float dirY = (Random.value * 400.0f) + 800.0f;
@@ -41,17 +44,11 @@ public class Hair : MonoBehaviour {
 			transform.rigidbody2D.isKinematic = false;
 			transform.rigidbody2D.AddForce(new Vector2(dirX, dirY));
 			t_time = Time.realtimeSinceStartup;
-			gameController.GetComponent<GameController>().AddScore(1);
+			GameController.AddScore(1);
 			cur_status = STATUS.DEAD;
 
-		}
-	}
-
-	public bool CheckisAlive(){
-		if(cur_status == STATUS.ALIVE){
-			return true;
-		}else{
-			return false;
+		}else if(coll.gameObject.tag == "Player" && cur_status == STATUS.ALIVE){
+			coll.SendMessage("Crush");
 		}
 	}
 }

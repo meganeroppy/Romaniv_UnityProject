@@ -11,7 +11,7 @@ public class Fertilizer : MonoBehaviour {
 	private Vector2 rayOrigin;
 	private Vector2 subRayOrigin_left;
 	private Vector2 subRayOrigin_right;
-	private const float OFFSET_SUBRAY = 2.5f; 
+	private const float OFFSET_SUBRAY = 1.5f; 
 	private Vector2 rayDirection = new Vector2(0.0f, -10.0f);
 	
 	public float ObstaclePercent = 25.0f;
@@ -75,9 +75,5 @@ public class Fertilizer : MonoBehaviour {
 		}
 		Destroy(this.gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
 }

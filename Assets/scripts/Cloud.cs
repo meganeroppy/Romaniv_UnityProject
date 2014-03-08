@@ -19,7 +19,7 @@ public class Cloud : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(GameController.cur_scene != GameController.SCENE.PAUSE){
+		if(!Pauser.pausing){
 			this.transform.Translate(speed, 0.0f, 0.0f);
 		}
 	}

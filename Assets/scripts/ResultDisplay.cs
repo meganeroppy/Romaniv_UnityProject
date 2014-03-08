@@ -32,9 +32,8 @@ public class ResultDisplay : MonoBehaviour {
 	private float slct_btn_width;// = 360.0f;
 	private float slct_btn_height;// = 100.0f;
 
-	//gameObject
-	public GameObject recordManagerPrefab;
-	public GameObject fontManagerPrefab;
+	private RecordManager recordManager;
+	private FontManager fontManager;
 
 	void Start () {
 		w = GameController.w;
@@ -45,18 +44,17 @@ public class ResultDisplay : MonoBehaviour {
 		margin_side = GameController.margin_side;
 		margin_updown = GameController.margin_updown;
 
-		GameObject fontManager = Instantiate(fontManagerPrefab) as GameObject;
-		tex_score = fontManager.GetComponent<FontManager>().tex_score;
-		tex_num = fontManager.GetComponent<FontManager>().tex_num;
-		tex_ke = fontManager.GetComponent<FontManager>().tex_ke;
-		tex_hon = fontManager.GetComponent<FontManager>().tex_hon;
-		tex_hitohada = fontManager.GetComponent<FontManager>().tex_hitohada;
-		tex_cm = fontManager.GetComponent<FontManager>().tex_cm;
-		Destroy(fontManager.gameObject);
+		fontManager = GetComponent<FontManager>();
+		recordManager = GetComponent<RecordManager>();
 
-		GameObject recordManager = Instantiate(recordManagerPrefab) as GameObject;
-		recordManager.GetComponent<RecordManager>().AppendToRecord(GameController.score.ToString() + ',' + Mathf.Floor(GameController.advance).ToString());
-		Destroy(recordManager.gameObject);
+		tex_score = fontManager.tex_score;
+		tex_num = fontManager.tex_num;
+		tex_ke = fontManager.tex_ke;
+		tex_hon = fontManager.tex_hon;
+		tex_hitohada = fontManager.tex_hitohada;
+		tex_cm = fontManager.tex_cm;
+
+		recordManager.AppendToRecord(GameController.score.ToString() + ',' + Mathf.Floor(GameController.advance).ToString());
 	}
 
 	void Update () {
@@ -69,7 +67,6 @@ public class ResultDisplay : MonoBehaviour {
 		}
 	}
 	void OnGUI(){
-
 
 		// Back Ground
 		GUI.Box(new Rect (margin_side, margin_updown, w - (margin_side * 2), h - (margin_updown * 2)), " ");

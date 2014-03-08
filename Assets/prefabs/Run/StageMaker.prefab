@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 212: {fileID: 21200000}
+  - 50: {fileID: 5000000}
   m_Layer: 0
   m_Name: StageMaker
   m_TagString: Untagged
@@ -24,10 +25,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.1161957, y: 25.7701893, z: 10.5078125}
+  m_LocalPosition: {x: 20, y: 0, z: 10.5078125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!50 &5000000
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,10 +72,10 @@ MonoBehaviour:
   - {fileID: 100004, guid: 2ca3bcbf15655cb49a7724bd54e0397f, type: 2}
   - {fileID: 100002, guid: 1c517fbd4b4212344af70783d99c61ac, type: 2}
   - {fileID: 100004, guid: ef663f4f836435040b580ce3de5bd7d3, type: 2}
-  Romaniv: {fileID: 100002, guid: d3d3acd24182d234c81ec63576677fa4, type: 2}
   makeSwitchPrefab: {fileID: 100000, guid: 95eca01594ba9f2439b299e12c5a1119, type: 2}
   fertilizerPrefab: {fileID: 100000, guid: 5fbbca264056e5244b255f8a30aabc23, type: 2}
   SafeRun: 0
+  stageEater: {fileID: 100000, guid: c49179ea4e0b3b948a0565795407f6e2, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

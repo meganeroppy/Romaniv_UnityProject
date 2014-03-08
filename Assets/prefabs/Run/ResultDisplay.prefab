@@ -9,6 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: ResultDisplay
   m_TagString: Untagged
@@ -27,6 +31,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,8 +102,95 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btn_retry: {fileID: 2800000, guid: 871fbccf65c3f0546a12e97d40d6c1ea, type: 3}
   btn_quit: {fileID: 2800000, guid: f04e511882e5216498b98ce18bc23f30, type: 3}
-  recordManagerPrefab: {fileID: 100000, guid: 7610b65843810374d855621e856d96ce, type: 2}
-  fontManagerPrefab: {fileID: 100000, guid: 6accb1138e3d80f4f9ac02d4de1da322, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70b05919fae40944a1a83d500b1e954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  record_file: {fileID: 4900000, guid: 241f9cc995f4fae40bb69367a15e1ad8, type: 3}
+  record_text: []
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a76d067e125bfd43a30526eaec293eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cur_style: 0
+  tex_saikou_default: {fileID: 2800000, guid: 6089a7db64597f944849e7a1127ae6d7, type: 3}
+  tex_score_default: {fileID: 2800000, guid: 589d93d7389fae5448c463d2c56192c9, type: 3}
+  tex_num_default:
+  - {fileID: 2800000, guid: e31ad1ac7aef7a541adef18ee336d67f, type: 3}
+  - {fileID: 2800000, guid: 0fd63f0aaccd9744e8abd9e39663566c, type: 3}
+  - {fileID: 2800000, guid: feb428333de4017458b6fbc067a3daae, type: 3}
+  - {fileID: 2800000, guid: 171fce1ea4b92674aab8297e324c595f, type: 3}
+  - {fileID: 2800000, guid: c64954adf1d084240b4dae55631809ba, type: 3}
+  - {fileID: 2800000, guid: 39a338ccfcec75b49921f349f09fe510, type: 3}
+  - {fileID: 2800000, guid: cd2e0dbf80731eb469523586ec94e6ac, type: 3}
+  - {fileID: 2800000, guid: cffb347b1507ac64c832b2fec1ef5696, type: 3}
+  - {fileID: 2800000, guid: 0ab373e5a11173d48aef0f6f21db2efa, type: 3}
+  - {fileID: 2800000, guid: 0d639cc4ba3c00b42a9cb8fb7a2eeee2, type: 3}
+  tex_ke_default: {fileID: 2800000, guid: 157a48d15d9aad64c93db99b714fba8c, type: 3}
+  tex_hon_default: {fileID: 2800000, guid: 357f847874cd4e242a1dc309aa5129d3, type: 3}
+  tex_hitohada_default: {fileID: 2800000, guid: 615022057f60734449b9ca47dc7dd13c,
+    type: 3}
+  tex_cm_default: {fileID: 2800000, guid: 55cc22912e0edca49888c8e9205ed030, type: 3}
+  tex_saikou_filled: {fileID: 2800000, guid: 8640a83ce43650446a91425b65ce7cfa, type: 3}
+  tex_score_filled: {fileID: 2800000, guid: c864728c20372b5418ae838b96294d46, type: 3}
+  tex_num_filled:
+  - {fileID: 2800000, guid: 1b7983793c9283e48ae5d89b4ddf2914, type: 3}
+  - {fileID: 2800000, guid: 9ca48f5dd590f7c448f8f465b6397607, type: 3}
+  - {fileID: 2800000, guid: 6b1cf32bb5454314480888000f4ecad9, type: 3}
+  - {fileID: 2800000, guid: d407566e25973524fadaa7742271613f, type: 3}
+  - {fileID: 2800000, guid: 88bac426074fbfc4a9424757976acb0b, type: 3}
+  - {fileID: 2800000, guid: 6d4660cc04e894f44861845d76145593, type: 3}
+  - {fileID: 2800000, guid: d6516db72e661174b90ca1f3e2db2651, type: 3}
+  - {fileID: 2800000, guid: 9494695943636fb4786e5f4e9b41d7a3, type: 3}
+  - {fileID: 2800000, guid: 823f40341ca803643aaf0bb9f38d3e1d, type: 3}
+  - {fileID: 2800000, guid: 1482c6c301d666042a291041806d455e, type: 3}
+  tex_ke_filled: {fileID: 2800000, guid: 7f746401d2613c7419af41d22da84da0, type: 3}
+  tex_hon_filled: {fileID: 2800000, guid: 65155953132ca004f87a9707ade6ff77, type: 3}
+  tex_hitohada_filled: {fileID: 2800000, guid: 2c23584e3257c3740a0a9435f8051c72, type: 3}
+  tex_cm_filled: {fileID: 2800000, guid: d5b68f9c11ae5d14eb3e854d5d82b5fc, type: 3}
+  tex_saikou: {fileID: 2800000, guid: 8640a83ce43650446a91425b65ce7cfa, type: 3}
+  tex_score: {fileID: 2800000, guid: c864728c20372b5418ae838b96294d46, type: 3}
+  tex_num:
+  - {fileID: 2800000, guid: 1b7983793c9283e48ae5d89b4ddf2914, type: 3}
+  - {fileID: 2800000, guid: 9ca48f5dd590f7c448f8f465b6397607, type: 3}
+  - {fileID: 2800000, guid: 6b1cf32bb5454314480888000f4ecad9, type: 3}
+  - {fileID: 2800000, guid: d407566e25973524fadaa7742271613f, type: 3}
+  - {fileID: 2800000, guid: 88bac426074fbfc4a9424757976acb0b, type: 3}
+  - {fileID: 2800000, guid: 6d4660cc04e894f44861845d76145593, type: 3}
+  - {fileID: 2800000, guid: d6516db72e661174b90ca1f3e2db2651, type: 3}
+  - {fileID: 2800000, guid: 9494695943636fb4786e5f4e9b41d7a3, type: 3}
+  - {fileID: 2800000, guid: 823f40341ca803643aaf0bb9f38d3e1d, type: 3}
+  - {fileID: 2800000, guid: 1482c6c301d666042a291041806d455e, type: 3}
+  tex_ke: {fileID: 2800000, guid: 7f746401d2613c7419af41d22da84da0, type: 3}
+  tex_hon: {fileID: 2800000, guid: 65155953132ca004f87a9707ade6ff77, type: 3}
+  tex_hitohada: {fileID: 2800000, guid: 2c23584e3257c3740a0a9435f8051c72, type: 3}
+  tex_cm: {fileID: 2800000, guid: d5b68f9c11ae5d14eb3e854d5d82b5fc, type: 3}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ea12116df38db498711dcb6eb8ea87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  se_menu: {fileID: 8300000, guid: 3149703dff48f5f41926cc70114a02f5, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

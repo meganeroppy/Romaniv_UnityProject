@@ -8,7 +8,6 @@ public class StageMaker : MonoBehaviour {
 	public GameObject[] stagePrefab = new GameObject[16];
 	private float[] leftEndPos = new float[16];
 	private float[] rightEndPos = new float[16];
-	public GameObject Romaniv;
 
 	public GameObject makeSwitchPrefab;
 	public GameObject fertilizerPrefab;
@@ -17,20 +16,23 @@ public class StageMaker : MonoBehaviour {
 	private float distanceToRomaniv = 22.0f;
 	private float distanceToSwitch = 18.8f;
 	private float switch_x;
-	private int seed;
 
 	public bool SafeRun = false;
 	//private float GapOfPosY = 0.0f;
 	private float curRightEnd = 0.0f;
 
+	public GameObject stageEater;
+	private GameObject romaniv;
 
 	private int cnt = 0;
 
 	// Use this for initialization
 	void Start () {
-		this.transform.position = new Vector3(Romaniv.transform.position.x + distanceToRomaniv, Romaniv.transform.position.y, this.transform.position.z);
+		Instantiate(stageEater, this.transform.position, this.transform.rotation);
 
-		
+		romaniv = GameObject.Find("Romaniv");
+		this.transform.position = new Vector3(romaniv.transform.position.x + distanceToRomaniv, romaniv.transform.position.y, this.transform.position.z);
+
 		curRightEnd = 0.0f;
 
 		leftEndPos[0] = 0.0f;	rightEndPos[0] = 0.0f;
@@ -53,7 +55,7 @@ public class StageMaker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position = new Vector3(Romaniv.transform.position.x + distanceToRomaniv, this.transform.position.y, this.transform.position.z);
+		this.transform.position = new Vector3(romaniv.transform.position.x + distanceToRomaniv, this.transform.position.y, this.transform.position.z);
 
 		if(readyToMake){
 			readyToMake = false;
@@ -66,7 +68,7 @@ public class StageMaker : MonoBehaviour {
 
 	void Make(){
 		//seed = (int)Mathf.Floor(Random.value * 10.0f % 16.0f);
-		seed = cnt;
+		int seed = cnt;
 		if(cnt == 7){
 			cnt+=2;
 		}else if(cnt >= 15){

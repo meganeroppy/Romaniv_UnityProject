@@ -23,7 +23,9 @@ public class Attack_zone : MonoBehaviour {
 		t_time += 1.0f * Time.deltaTime;
 
 		if(t_time >= DELAY && t_time < DELAY + DURATION){
-			this.renderer.material.color = new Color(0xFF,0x00,0x00);
+			if(transform.renderer.enabled == true){
+				this.renderer.material.color = new Color(0xFF,0x00,0x00);
+			}
 			if(!hittable){
 				hittable = true;
 			}

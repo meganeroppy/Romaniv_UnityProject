@@ -57,13 +57,12 @@ public class BackGround_Run_NEW: MonoBehaviour {
 		}
 	//	Debug.Log(Time.frameCount);
 
-		if(Time.frameCount % 30 == 0 && GameController.cur_scene != GameController.SCENE.PAUSE){
+		if(Time.frameCount % 30 == 0 && !Pauser.pausing){
 			Judge();
 		}
 	}
 
 	private void Judge(){
-		Debug.Log((int)Mathf.Floor(Random.Range(1, 3)));
 		if((int)Mathf.Floor(Random.Range(0, 2)) == 0){
 			MakeCloud();
 		}
@@ -97,6 +96,7 @@ public class BackGround_Run_NEW: MonoBehaviour {
 		}
 	}
 	*/
+
 	private void MakeCloud(){
 		int cloudType = (int)Mathf.Floor(Random.value * 10.0f % 8.0f);
 		if(cloudType == PreviousNumber[0]){

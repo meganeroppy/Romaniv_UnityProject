@@ -5,33 +5,40 @@ using System.Collections;
 public class GameController: MonoBehaviour {
 
 	//status
-	public enum SCENE{START, RUN, RESULT, PAUSE};
+	public enum SCENE{START, RUN, RESULT};
 	public static SCENE cur_scene;
 
 	//system
 	private const float DEFAULT_TIMESCALE = 1.0f;
-	private float cur_timeScale = DEFAULT_TIMESCALE;
+	public static float cur_timeScale;
 
 	//property
 	public static int score;
 	public static float advance;
 	public static uint difficulty;
-
+	
 	//Size of Display
 	public static float w;
 	public static float h;
 	public static float margin_side;
 	public static float margin_updown;
 
-	//GUI
-	public GameObject GUIController;
-	private GameObject GCPrefab;
+	private GUIController gui;
+	private Pauser pauser;
+
+	public GameObject resultDispley;
+
 
 	//BackGround
-	public GameObject backGround_run;
+	//public GameObject backGround_run;
 	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+
+		gui = GetComponent<GUIController>();
+		pauser = GetComponent<Pauser>();
+
+		cur_timeScale = DEFAULT_TIMESCALE;
 		Time.timeScale = cur_timeScale;
 
 		w = Screen.width;
@@ -50,23 +57,22 @@ public class GameController: MonoBehaviour {
 //		Debug.Log(Time.timeScale);
 		switch(cur_scene){
 			case SCENE.START:
-				GCPrefab = Instantiate( GUIController ) as GameObject;
 				cur_scene = SCENE.RUN;
 				break;
 			case SCENE.RUN:
 				break;
 			case SCENE.RESULT:
-					Destroy(GCPrefab);
-				break;
-			case SCENE.PAUSE:
+				gui.enabled = false;
+				pauser.enabled = false;
 				break;
 			default:
 				break;
 		}
 	}
 
-	public static void switchScene(string nextScene){
+	public void switchScene(string nextScene){
 		if(nextScene == "result"){
+			Instantiate(resultDispley);
 			cur_scene = SCENE.RESULT;
 		}else if(nextScene == "run"){
 			cur_scene = SCENE.RUN;
@@ -75,20 +81,11 @@ public class GameController: MonoBehaviour {
 		}
 	}
 
-	public static void pause(){
-		Time.timeScale = 0;
-		cur_scene = SCENE.PAUSE;
-	}
-
-	public void resume(){
-		Time.timeScale = cur_timeScale;
-		cur_scene = SCENE.RUN;
-	}
-
-	public void AddScore(int num){
-		if(score % 11 == 0 && score != 0){
+	public static void AddScore(int num){
+		if(score % 9 == 0 && score != 0){
 			//backGround_run.GetComponent<BackGround_Run>().switchPic();
-			Time.timeScale += 0.05f;
+			//Time.timeScale += 0.05f;
+			Time.timeScale += 0.15f;
 			cur_timeScale = Time.timeScale;
 			score += num; 
 		}else{

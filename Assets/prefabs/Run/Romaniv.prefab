@@ -13,6 +13,7 @@ GameObject:
   - 95: {fileID: 9500000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Romaniv
   m_TagString: Player
@@ -47,9 +48,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400004}
+  - 114: {fileID: 11400002}
   - 212: {fileID: 21200002}
-  m_Layer: 9
-  m_Name: sky_daytime
+  m_Layer: 0
+  m_Name: BackGround_Run_NEW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,8 +88,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.18048477, y: 1.3084259, z: 30}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!20 &2000000
@@ -141,7 +143,7 @@ CircleCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 78aea62fdd0ea65459c677c950df9afc, type: 2}
   m_IsTrigger: 0
   m_Radius: 2.5
   m_Center: {x: 0, y: -1.39999998}
@@ -152,6 +154,64 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 20b9613b07acfde41b4abd2a4f897804, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9200000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -184,13 +244,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a73b1d8e066e341842948c80abc0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  jumpForce: 650
-  cur_status: 0
-  cur_j_status: 0
-  resultDispley: {fileID: 100000, guid: eda9076edadb8554ea5f6a1b8c3e9041, type: 2}
+  MUTEKI: 1
+  se_jump: {fileID: 8300000, guid: 20b9613b07acfde41b4abd2a4f897804, type: 3}
+  se_slap1: {fileID: 0}
+  se_slap2: {fileID: 0}
+  se_exp: {fileID: 8300000, guid: 7d427cde0329b3d4fba46be9f1071cf1, type: 3}
   attack_zone: {fileID: 100000, guid: 1d558d8c52eff794cb0a42dd252bc309, type: 2}
   explosion: {fileID: 100000, guid: b46eaa394fada0e4bbff7c4b098e16c3, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f84a715796a9054abb8779d0678ef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeMethod: 1
+  daytime: {fileID: 100000, guid: 93ae03af1c6f1c24b802f9dc982f2e25, type: 2}
+  sunset: {fileID: 100000, guid: 3658b708236a52e40b8ac18df877c37f, type: 2}
+  night: {fileID: 100000, guid: c5deda1680d14a04c98d8e29ec921f64, type: 2}
+  cloudPrefab:
+  - {fileID: 100000, guid: 28d799849831bf24393cab99eaf05d46, type: 2}
+  - {fileID: 100000, guid: dd598b025f98c224693376e9c38c8cd0, type: 2}
+  - {fileID: 100000, guid: 99962702b9990514ca7b84de2c915370, type: 2}
+  - {fileID: 100000, guid: 7c389396d16944c4fad2f6986a40b96e, type: 2}
+  - {fileID: 100000, guid: 912e6f560be7364438a599d61666ccb8, type: 2}
+  - {fileID: 100000, guid: 0ced3ed3cb74a874bacfd7f5674a6632, type: 2}
+  - {fileID: 100000, guid: 615732951c58a7c4ca016e48a175cb7e, type: 2}
+  - {fileID: 100000, guid: 14d28870ee5f4774fb7e33698c0d6142, type: 2}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

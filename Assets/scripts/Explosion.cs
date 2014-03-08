@@ -12,15 +12,11 @@ public class Explosion : MonoBehaviour {
 	void Start () {
 		Destroy(gameObject, duration);
 		if(GameController.score >= 25){
-			Instantiate(onisan, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 2.0f), gameObject.transform.rotation);
+			Instantiate(onisan, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2.0f), gameObject.transform.rotation);
 		}else if(GameController.score >= 50){
-			Instantiate(ojisan, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 2.0f), gameObject.transform.rotation);
+			Instantiate(ojisan, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2.0f), gameObject.transform.rotation);
 		}else{
-			Instantiate(ojichan, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 2.0f), gameObject.transform.rotation);
+			Instantiate(ojichan, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2.0f), gameObject.transform.rotation);
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {	
 	}
 }
